@@ -1,0 +1,24 @@
+version: '3.1'
+services:
+  app:
+    container_name: service_Distanziamento
+    image: distanziamento:latest
+    build: ./
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db_Distanziamento
+    volumes:
+      - service_Distanziamento_Volume:/dev/services
+  db_Distanziamento:
+    container_name: db_Distanziamento
+    image: postgres
+    ports:
+      - "5500:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=Distanziamento
+
+volumes:
+  service_Distanziamento_Volume:
