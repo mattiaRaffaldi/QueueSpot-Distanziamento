@@ -55,14 +55,14 @@ public class ApiLayer {
     }
 
     //{"msg":"allarme!!"}
-    @GetMapping(value = "/sendAlarm")
-    public String producer(@RequestParam("exchangeName") String exchange,
-                           @RequestParam("messageData") String messageData) throws ParseException {
+    @GetMapping(path="/send")
+    @ResponseBody
+    public String producer(@RequestBody String messageData) throws ParseException {
+
         JSONParser parser = new JSONParser();
         JSONObject json = (JSONObject) parser.parse(messageData);
         pub.pushMessage(json);
-
-        return "Message sent to the RabbitMQ Fanout Exchange Successfully";
+        return messageData;
     }
 
 }

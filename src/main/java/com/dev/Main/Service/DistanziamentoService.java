@@ -34,5 +34,7 @@ public class DistanziamentoService {
             dist.save(d);
     }
 
+    //metodo che analizza le posizioni e restituisce quelli con la posizione troppo vicina
 
+     //o o o        0       o o
 }

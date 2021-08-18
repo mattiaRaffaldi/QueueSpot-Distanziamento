@@ -25,7 +25,7 @@ public class Listener {
 //    }
 
     @RabbitListener(queues = RabbitConfig.QUEUE)
-    @SendTo("status")
+    //@SendTo("status")
     public void consumeMessageFromQueue(Distanziamento dist) {
         System.out.println("Message : " + dist.toString());
         //return dist;

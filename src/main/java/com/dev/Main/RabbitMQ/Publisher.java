@@ -5,6 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
 import com.fasterxml.jackson.databind.util.JSONPObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -31,7 +33,23 @@ public class Publisher {
 
 
     public void pushMessage(JSONObject tosend) {
-        rabbitTemplate.convertAndSend(RabbitConfig.EXCHANGE, RabbitConfig.QUEUE, tosend);
-        System.out.println("Messaggio Inviato!");
+
+            String msg = "{\n" +
+                    "\"distID\":\"1\",\n" +
+                    "\"email\":\"matteo\",\n" +
+                    "\"xCoord\":\"123\",\n" +
+                    "\"yCoord\":\"542\"\n" +
+                    "}";
+
+        JSONParser parser = new JSONParser();
+        try {
+            JSONObject json = (JSONObject) parser.parse(msg);
+            //rabbitTemplate.convertAndSend(RabbitConfig.EXCHANGE, RabbitConfig.QUEUE, json);
+            rabbitTemplate.convertAndSend(RabbitConfig.QUEUE, tosend);
+            System.out.println("Messaggio Inviato!");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
     }
 }

@@ -27,10 +27,10 @@ public class RabbitConfig {
         return new Queue(QUEUE_ALARM);
     }
 
-    @Bean
+    /*@Bean
     TopicExchange exchange() {
         return new TopicExchange(EXCHANGE);
-    }
+    }*/
 
     @Bean
     public MessageConverter converter(){
