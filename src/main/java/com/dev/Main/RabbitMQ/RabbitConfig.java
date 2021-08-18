@@ -13,11 +13,23 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitConfig {
 
     public static final String QUEUE = "posizioni";
+    public static final String QUEUE_ALARM = "Distanziamento_allarmi";
+    public static final String EXCHANGE = "posizioniExchange";
 
     //creazione queue
     @Bean
     public Queue posizioni() {
         return new Queue(QUEUE);
+    }
+
+     @Bean
+    public Queue allarmi() {
+        return new Queue(QUEUE_ALARM);
+    }
+
+    @Bean
+    TopicExchange exchange() {
+        return new TopicExchange(EXCHANGE);
     }
 
     @Bean

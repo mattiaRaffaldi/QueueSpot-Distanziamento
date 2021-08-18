@@ -23,12 +23,13 @@ public class RabbitMQ_sender {
         helloQueue();
     }
 
+
     @Bean
     public Queue helloQueue() {
         return new Queue("hello");
     }
 
-    @Scheduled(fixedDelay = 5000)
+    @Bean
     public void pushMessage() {
         String messageString = "Hello Rabbit @" + LocalDateTime.now().format(DateTimeFormatter.ISO_TIME);
         System.out.println("Messaggio Inviato!");

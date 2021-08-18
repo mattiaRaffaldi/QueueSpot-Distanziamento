@@ -5,6 +5,9 @@ import com.dev.Main.RabbitMQ.Publisher;
 import com.dev.Main.RabbitMQ.RabbitConfig;
 import com.dev.Main.Service.DistanziamentoConfig;
 import com.dev.Main.Service.DistanziamentoService;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +21,8 @@ public class ApiLayer {
     private final DistanziamentoConfig adder;
     private final Publisher pub;
     private RabbitConfig template ;
+   // @Autowired
+    //private RabbitTemplate rabbitTemplate;
 
     //dist sarà autoinstanziata
     @Autowired
@@ -44,9 +49,20 @@ public class ApiLayer {
     public String aggiungiPosizione(@RequestBody Distanziamento newDist) {
 
             distService.insertItem(newDist);
+            
             System.out.println(newDist + " saved");
             return "200";
+    }
 
+    //{"msg":"allarme!!"}
+    @GetMapping(value = "/sendAlarm")
+    public String producer(@RequestParam("exchangeName") String exchange,
+                           @RequestParam("messageData") String messageData) throws ParseException {
+        JSONParser parser = new JSONParser();
+        JSONObject json = (JSONObject) parser.parse(messageData);
+        pub.pushMessage(json);
+
+        return "Message sent to the RabbitMQ Fanout Exchange Successfully";
     }
 
 }
