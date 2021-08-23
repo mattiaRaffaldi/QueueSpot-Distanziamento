@@ -12,22 +12,17 @@ import org.springframework.context.annotation.Configuration;
 //classe per configurare la coda rabbit
 public class RabbitConfig {
 
-    public static final String QUEUE = "posizioni";
-    public static final String QUEUE_ALARM = "Distanziamento_allarmi";
+    public static final String LISTEN_QUEUE = "Distanziamento/Contatore";
+    public static final String PUBLISH_QUEUE = "Distanziamento/allarmi";
     public static final String EXCHANGE = "posizioniExchange";
 
     //creazione queue
     @Bean
     public Queue posizioni() {
-        return new Queue(QUEUE);
+        return new Queue(LISTEN_QUEUE);
     }
 
-     @Bean
-    public Queue allarmi() {
-        return new Queue(QUEUE_ALARM);
-    }
-
-    /*@Bean
+   /*@Bean
     TopicExchange exchange() {
         return new TopicExchange(EXCHANGE);
     }*/

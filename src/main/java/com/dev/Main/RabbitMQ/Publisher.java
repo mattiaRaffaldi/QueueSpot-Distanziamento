@@ -45,7 +45,7 @@ public class Publisher {
         try {
             JSONObject json = (JSONObject) parser.parse(msg);
             //rabbitTemplate.convertAndSend(RabbitConfig.EXCHANGE, RabbitConfig.QUEUE, json);
-            rabbitTemplate.convertAndSend(RabbitConfig.QUEUE, tosend);
+            rabbitTemplate.convertAndSend(RabbitConfig.PUBLISH_QUEUE, tosend);
             System.out.println("Messaggio Inviato!");
         } catch (ParseException e) {
             e.printStackTrace();
