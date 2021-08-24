@@ -55,7 +55,7 @@ public class ApiLayer {
     }
 
     //{"msg":"allarme!!"}
-    @GetMapping(path="/send")
+    @PostMapping(path="/send")
     @ResponseBody
     public String producer(@RequestBody String messageData) throws ParseException {
 

@@ -13,7 +13,7 @@ public class DistanziamentoConfig {
         return args -> {
 
         Distanziamento d1 = new Distanziamento(
-                    "miriferra@gmail",
+                33L,
                     653,
                     654);
 

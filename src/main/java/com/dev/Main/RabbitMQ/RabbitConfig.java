@@ -12,20 +12,27 @@ import org.springframework.context.annotation.Configuration;
 //classe per configurare la coda rabbit
 public class RabbitConfig {
 
+
     public static final String LISTEN_QUEUE = "Distanziamento/Contatore";
-    public static final String PUBLISH_QUEUE = "Distanziamento/allarmi";
-    public static final String EXCHANGE = "posizioniExchange";
+    public static final String LISTEN_QUEUE1 = "Distanziamento/Notifiche";
+    public static final String PUBLISH_QUEUE = "Contatore/Distanziamento";
+    public static final String PUBLISH_QUEUE1 = "Notifiche/Distanziamento";
+    public static final String EXCHANGE = "Pissir";
 
     //creazione queue
     @Bean
-    public Queue posizioni() {
+    public Queue createQueue() {
+        return new Queue(LISTEN_QUEUE);
+    }
+    @Bean
+    public Queue createQueue1() {
         return new Queue(LISTEN_QUEUE);
     }
 
-   /*@Bean
+   @Bean
     TopicExchange exchange() {
         return new TopicExchange(EXCHANGE);
-    }*/
+    }
 
     @Bean
     public MessageConverter converter(){

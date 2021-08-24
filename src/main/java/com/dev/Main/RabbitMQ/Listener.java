@@ -10,18 +10,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class Listener {
 
-//    @RabbitListener(queues = RabbitConfig.QUEUE)
-//    public void consumeMessageFromQueue(Distanziamento dist) {
-//
-//        /**/
-//{
-////            "distID":"1",
-////                "email":"mattia",
-////                "xCoord":"123",
-////                "yCoord":"542"
-////        }
-//        System.out.println("Message : " + dist.toString());
-//    }
 
     @RabbitListener(queues = RabbitConfig.LISTEN_QUEUE)
     //@SendTo("status")
@@ -30,4 +18,10 @@ public class Listener {
         System.out.println("Message : " + dist.toString());
         //return dist;
     }
+    /*{
+            "distID":"1",
+               "email":"mattia",
+                "xCoord":"123",
+                "yCoord":"542"
+        }*/
 }
