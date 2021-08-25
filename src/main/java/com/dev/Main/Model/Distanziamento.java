@@ -38,9 +38,9 @@ public class Distanziamento {
         this.xCoord = xCoord;
         this.yCoord = yCoord;
     }
-    public Distanziamento(String email, Integer xCoord, Integer yCoord) {
-        this.distID= distID;
-        this.email = email;
+
+    public Distanziamento(Long distId, Integer xCoord, Integer yCoord) {
+        this.distID= distId;
         this.xCoord = xCoord;
         this.yCoord = yCoord;
     }
