@@ -11,12 +11,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 //classe per configurare la coda rabbit
 public class RabbitConfig {
-
-
-    public static final String LISTEN_QUEUE = "Distanziamento/Contatore";
-    public static final String LISTEN_QUEUE1 = "Distanziamento/Notifiche";
-    public static final String PUBLISH_QUEUE = "Contatore/Distanziamento";
-    public static final String PUBLISH_QUEUE1 = "Notifiche/Distanziamento";
+    //queue -> Scrive/Legge
+    public static final String LISTEN_QUEUE = "Contatore/Distanziamento";
+    public static final String PUBLISH_QUEUE = "Distanziamento/Notifiche";
+/*    public static final String PUBLISH_QUEUE = "Contatore/Distanziamento";
+    public static final String PUBLISH_QUEUE1 = "Notifiche/Distanziamento";*/
     public static final String EXCHANGE = "Pissir";
 
     //creazione queue
