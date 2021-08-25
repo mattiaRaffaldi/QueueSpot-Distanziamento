@@ -36,7 +36,7 @@ public class Publisher {
 
             String msg = "{\n" +
                     "\"distID\":\"1\",\n" +
-                    "\"email\":\"matteo\",\n" +
+                    "\"userID\":\"matteo\",\n" +
                     "\"xCoord\":\"123\",\n" +
                     "\"yCoord\":\"542\"\n" +
                     "}";

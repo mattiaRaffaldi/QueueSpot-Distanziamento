@@ -20,7 +20,7 @@ public class Listener {
     }
     /*{
             "distID":"1",
-               "email":"mattia",
+               "userID":"mattia",
                 "xCoord":"123",
                 "yCoord":"542"
         }*/

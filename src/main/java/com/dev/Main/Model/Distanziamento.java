@@ -17,13 +17,13 @@ public class Distanziamento {
             generator = "distanziamentoID"
     )
     public Long distID;
-    public String email;
+    public String userID;
 
     @Override
     public String toString() {
         return "Distanziamento{" +
                 "distID=" + distID +
-                ", email='" + email + '\'' +
+                ", userID='" + userID + '\'' +
                 ", xCoord=" + xCoord +
                 ", yCoord=" + yCoord +
                 '}';
@@ -32,9 +32,9 @@ public class Distanziamento {
     public Integer xCoord;
     public Integer yCoord;
 
-    public Distanziamento(Long distID, String email, Integer xCoord, Integer yCoord) {
+    public Distanziamento(Long distID, String userID, Integer xCoord, Integer yCoord) {
         this.distID= distID;
-        this.email = email;
+        this.userID = userID;
         this.xCoord = xCoord;
         this.yCoord = yCoord;
     }
@@ -49,12 +49,12 @@ public class Distanziamento {
     public Distanziamento() {
     }
 
-    public String getEmail() {
-        return email;
+    public String getUserID() {
+        return userID;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
     public Integer getxCoord() {
