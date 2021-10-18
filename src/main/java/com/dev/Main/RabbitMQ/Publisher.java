@@ -1,55 +1,55 @@
 package com.dev.Main.RabbitMQ;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.concurrent.TimeUnit;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import org.json.simple.parser.JSONParser;
+import com.dev.Main.Model.MyMessage;
 import org.json.simple.parser.ParseException;
+import org.springframework.amqp.core.TopicExchange;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
-import org.json.simple.JSONObject;
 
 @Component
 public class Publisher {
 
     @Autowired
-    private final RabbitTemplate rabbitTemplate;
-    private final Listener listener;
+    private RabbitTemplate template;
 
-    public Publisher(Listener Listener, RabbitTemplate rabbitTemplate) {
-        this.listener = Listener;
-        this.rabbitTemplate = rabbitTemplate;
+    @Autowired
+    private TopicExchange topic;
+
+    private final String[] keys = {"notifiche.contatore", "distanziamento.contatore", "qr.contatore"};
+
+    public void send(MyMessage mess, String channelName) throws ParseException {
+
+/*
+            template.convertAndSend(RabbitConfig.getEXCHANGE(), channelName, mess);
+*/
+            template.convertAndSend(channelName,mess);
+            System.out.println(" [x] Sent '" + mess + "'" + "channelName: " + channelName );
     }
 
 
-    public void produceMsg(String msg){
-        rabbitTemplate.convertAndSend("posizioni", msg);
+    @Bean
+    public RabbitTemplate rabbitTemplate(final ConnectionFactory connectionFactory) {
+        final var rabbitTemplate = new RabbitTemplate(connectionFactory);
+        rabbitTemplate.setMessageConverter(producerJackson2MessageConverter());
+        return rabbitTemplate;
     }
 
-
-    public void pushMessage(JSONObject tosend) {
-
-            String msg = "{\n" +
-                    "\"distID\":\"1\",\n" +
-                    "\"userID\":\"matteo\",\n" +
-                    "\"xCoord\":\"123\",\n" +
-                    "\"yCoord\":\"542\"\n" +
-                    "}";
-
-        JSONParser parser = new JSONParser();
-        try {
-            JSONObject json = (JSONObject) parser.parse(msg);
-            //rabbitTemplate.convertAndSend(RabbitConfig.EXCHANGE, RabbitConfig.QUEUE, json);
-            rabbitTemplate.convertAndSend(RabbitConfig.PUBLISH_QUEUE, tosend);
-            System.out.println("Messaggio Inviato!");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
+    /*@Bean*/
+    public Jackson2JsonMessageConverter producerJackson2MessageConverter() {
+        return new Jackson2JsonMessageConverter();
     }
+
+   /* @Bean
+    public AmqpTemplate pushMessage(ConnectionFactory connectionFactory) {
+        final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
+        rabbitTemplate.setMessageConverter(jsonMessageConverter());
+        return rabbitTemplate;
+    }*/
+
 }

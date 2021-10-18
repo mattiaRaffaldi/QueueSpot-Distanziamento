@@ -1,12 +1,11 @@
 package com.dev.Main;
 
 import com.dev.Main.Model.Distanziamento;
+import com.dev.Main.Model.MyMessage;
 import com.dev.Main.RabbitMQ.Publisher;
 import com.dev.Main.RabbitMQ.RabbitConfig;
 import com.dev.Main.Service.DistanziamentoConfig;
 import com.dev.Main.Service.DistanziamentoService;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +25,7 @@ public class ApiLayer {
 
     //dist sarà autoinstanziata
     @Autowired
-    public ApiLayer(DistanziamentoService dist,DistanziamentoConfig adder,Publisher t) {
+    public ApiLayer(DistanziamentoService dist, DistanziamentoConfig adder, Publisher t) {
         //this.template = (RabbitConfig) template.template();
         this.distService = dist;
         this.adder = adder;
@@ -55,14 +54,19 @@ public class ApiLayer {
     }
 
     //{"msg":"allarme!!"}
-    @PostMapping(path="/send")
-    @ResponseBody
-    public String producer(@RequestBody String messageData) throws ParseException {
 
-        JSONParser parser = new JSONParser();
-        JSONObject json = (JSONObject) parser.parse(messageData);
-        pub.pushMessage(json);
-        return messageData;
+    @PostMapping("/add")
+    public String entrataCliente(@RequestParam("name") String nome,@RequestParam("channel") String channel) {
+
+        try {
+            MyMessage nuovo = new MyMessage("1",nome,"prova@gmail.com");
+
+            pub.send(nuovo, channel);
+            return "200";
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return "200";
     }
-
 }
