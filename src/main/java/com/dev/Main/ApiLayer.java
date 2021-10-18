@@ -59,7 +59,7 @@ public class ApiLayer {
     public String entrataCliente(@RequestParam("name") String nome,@RequestParam("channel") String channel) {
 
         try {
-            MyMessage nuovo = new MyMessage("1",nome,"prova@gmail.com");
+            MyMessage nuovo = new MyMessage("1",nome,"prova@gmail.com","azione","token");
 
             pub.send(nuovo, channel);
             return "200";

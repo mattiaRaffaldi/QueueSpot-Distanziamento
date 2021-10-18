@@ -16,11 +16,12 @@ public class MyMessage {
     //3 distanziamento
     //4 QR
     //5 notifica
-
     @NonNull
     private String contenuto;
-
-
     @NonNull
     private String mail;
+    @NonNull
+    private String azione;
+    @NonNull
+    private String token;
 }

@@ -32,24 +32,10 @@ public class Publisher {
             System.out.println(" [x] Sent '" + mess + "'" + "channelName: " + channelName );
     }
 
-
     @Bean
-    public RabbitTemplate rabbitTemplate(final ConnectionFactory connectionFactory) {
-        final var rabbitTemplate = new RabbitTemplate(connectionFactory);
-        rabbitTemplate.setMessageConverter(producerJackson2MessageConverter());
-        return rabbitTemplate;
-    }
-
-    /*@Bean*/
-    public Jackson2JsonMessageConverter producerJackson2MessageConverter() {
+    public MessageConverter jsonMessageConverter(){
         return new Jackson2JsonMessageConverter();
     }
 
-   /* @Bean
-    public AmqpTemplate pushMessage(ConnectionFactory connectionFactory) {
-        final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
-        rabbitTemplate.setMessageConverter(jsonMessageConverter());
-        return rabbitTemplate;
-    }*/
 
 }

@@ -41,7 +41,7 @@ public class RabbitConfig {
 
         return BindingBuilder.bind(contatoreQueue)
                 .to(topicExchange)
-                .with(LISTEN_QUEUE+".*");
+                .with("distanziamento.*");
     }
        @Bean
     public com.dev.Main.RabbitMQ.Subscriber receiver() {
