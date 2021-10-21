@@ -19,7 +19,7 @@ public class MyMessage {
     @NonNull
     private String contenuto;
     @NonNull
-    private String mail;
+    private String email;
     @NonNull
     private String azione;
     @NonNull

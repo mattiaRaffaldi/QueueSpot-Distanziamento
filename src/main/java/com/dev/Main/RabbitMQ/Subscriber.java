@@ -31,7 +31,6 @@ public class Subscriber {
         switch (message.getId()) {
             case "1":
                 //telefono
-                System.out.print("sono in switch, eseguo azione di invio");
                 StringBuilder cont = new StringBuilder();
                 /*for (Distanziamento pos : serv.getDistanziamento()){
                     cont.append("lat = ").append(pos.getxCoord()).append("lon = ").append(pos.getyCoord()).append(" - ");
@@ -42,12 +41,12 @@ public class Subscriber {
                     pos.setxCoord(new Random().nextInt());
                     pos.setyCoord(new Random().nextInt());
                     i++;
-                    cont.append("lat = ").append(pos.getxCoord()).append("lon = ").append(pos.getyCoord()).append(" - ");
+                    cont.append("lat = ").append(pos.getxCoord()).append("lon = ").append(pos.getyCoord()).append(" <-> ");
                 }
                 MyMessage x = new MyMessage();
                 x.setId("3");
                 x.setContenuto(cont.toString());
-                prod.send(x, "telefono.distanziamento");
+                prod.send(x, "m."+message.getEmail()+".distanziamento");
                 break;
             case "2":
                 //contatore
