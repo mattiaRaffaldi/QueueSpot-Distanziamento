@@ -13,13 +13,12 @@ import java.util.List;
 public interface DistanziamentoRepository extends JpaRepository<Distanziamento,Long> {
     //data access
 
-
-    @Query("SELECT d FROM Distanziamento d WHERE d.distID = ?1")
-    List<Distanziamento> findPosizioneUser(Long id);
-
     //Metodo per ottenere tutte le coordinate degli utenti all'interno del db.
-    @Query("SELECT d.distID,d.xCoord,d.yCoord FROM Distanziamento d")
+    @Query("SELECT d.lat,d.lon FROM Distanziamento d")
     List<Distanziamento> findCoordinates();
+
+    @Query("SELECT d FROM Distanziamento d WHERE d.userID= ?1")
+    Distanziamento getByUser(String mail);
 
 
 

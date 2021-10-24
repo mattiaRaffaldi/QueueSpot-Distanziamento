@@ -12,10 +12,7 @@ public class DistanziamentoConfig {
     CommandLineRunner insertItem(DistanziamentoRepository dist){
         return args -> {
 
-        Distanziamento d1 = new Distanziamento(
-                33L,
-                    653,
-                    654);
+        Distanziamento d1 = new Distanziamento("mail@gmail.com", 653.0, 654.0);
 
         //dist.saveAll(List.of(d1));
         dist.save(d1);

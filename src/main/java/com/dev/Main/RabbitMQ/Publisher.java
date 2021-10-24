@@ -28,7 +28,7 @@ public class Publisher {
 /*
             template.convertAndSend(RabbitConfig.getEXCHANGE(), channelName, mess);
 */
-            template.convertAndSend(channelName,mess);
+            template.convertAndSend(RabbitConfig.getEXCHANGE(),channelName,mess);
             System.out.println(" [x] Sent '" + mess + "'" + "channelName: " + channelName );
     }
 

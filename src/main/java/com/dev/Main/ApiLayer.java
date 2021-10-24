@@ -39,9 +39,8 @@ public class ApiLayer {
     }
 
     @GetMapping(path="/{id}")
-    public List<Distanziamento> getPosizioneUser(@PathVariable(value = "id") Long userId){
-
-        return distService.getDistanziamentoByUser(userId);
+    public Distanziamento getPosizioneUser(@PathVariable(value = "id") String userId){
+        return distService.getDistanziamentoUser(userId);
     }
 
     @PostMapping("/new")

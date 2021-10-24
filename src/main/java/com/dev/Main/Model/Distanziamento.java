@@ -6,46 +6,16 @@ import javax.persistence.*;
 @Table
 public class Distanziamento {
     @Id
-    @SequenceGenerator(
-            //devono avere lo stesso nome!!!
-            name = "distanziamentoID",
-            sequenceName = "distanziamentoID",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "distanziamentoID"
-    )
-    public Long distID;
     public String userID;
+    public Double lat;
+    public Double lon;
 
-    @Override
-    public String toString() {
-        return "Distanziamento{" +
-                "distID=" + distID +
-                ", userID='" + userID + '\'' +
-                ", xCoord=" + xCoord +
-                ", yCoord=" + yCoord +
-                '}';
-    }
-
-    public Integer xCoord;
-    public Integer yCoord;
-
-    public Distanziamento(Long distID, String userID, Integer xCoord, Integer yCoord) {
-        this.distID= distID;
+    public Distanziamento(String userID, Double lat, Double lon) {
         this.userID = userID;
-        this.xCoord = xCoord;
-        this.yCoord = yCoord;
+        this.lat = lat;
+        this.lon = lon;
     }
 
-    public Distanziamento(Long distId, Integer xCoord, Integer yCoord) {
-        this.distID= distId;
-        this.xCoord = xCoord;
-        this.yCoord = yCoord;
-    }
-
-    //per far funzionare api--> serve un costruttore vuoto
     public Distanziamento() {
     }
 
@@ -57,19 +27,28 @@ public class Distanziamento {
         this.userID = userID;
     }
 
-    public Integer getxCoord() {
-        return xCoord;
+    public Double getxLat() {
+        return lat;
     }
 
-    public void setxCoord(Integer xCoord) {
-        this.xCoord = xCoord;
+    public void setxLat(Double xCoord) {
+        this.lat = xCoord;
     }
 
-    public Integer getyCoord() {
-        return yCoord;
+    public Double getyLon() {
+        return lon;
     }
 
-    public void setyCoord(Integer yCoord) {
-        this.yCoord = yCoord;
+    public void setyLon(Double yCoord) {
+        this.lon = yCoord;
     }
+
+    @Override
+    public String toString() {
+        return "Distanziamento{userID=" + userID + '\'' +
+                ", xCoord=" + lat +
+                ", yCoord=" + lon +
+                '}';
+    }
+
 }
