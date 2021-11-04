@@ -24,10 +24,6 @@ public class Publisher {
     private final String[] keys = {"notifiche.contatore", "distanziamento.contatore", "qr.contatore"};
 
     public void send(MyMessage mess, String channelName) throws ParseException {
-
-/*
-            template.convertAndSend(RabbitConfig.getEXCHANGE(), channelName, mess);
-*/
             template.convertAndSend(RabbitConfig.getEXCHANGE(),channelName,mess);
             System.out.println(" [x] Sent '" + mess + "'" + "channelName: " + channelName );
     }

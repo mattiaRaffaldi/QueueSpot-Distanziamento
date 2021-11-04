@@ -68,7 +68,8 @@ public class DistanziamentoManager {
 						MyMessage resp = new MyMessage();
 						resp.setId("3");
 						resp.setContenuto(cont.toString());
-						pub.send(resp, "m."+message.getEmail()+".distanziamento");
+						//pub.send(resp, "m."+message.getEmail()+".distanziamento");
+						pub.send(resp, "m_inside."+message.getEmail()+".distanziamento");
 		}
 
 
