@@ -1,9 +1,5 @@
 package com.dev.Main.util;
 
-
-import java.util.ArrayList;
-import java.util.Random;
-
 import com.dev.Main.Model.Distanziamento;
 import com.dev.Main.Model.MyMessage;
 import com.dev.Main.RabbitMQ.Publisher;
@@ -47,10 +43,10 @@ public class DistanziamentoManager {
 
 			for (Distanziamento pos : serv.getDistanziamento()){
 				System.out.println("COVID ZONE METHOD --- IOT POS : " + lat + " " + lon );
-				System.out.println("COVID ZONE METHOD --- OTHER POS : " + lat + " " + lon );
+				System.out.println("COVID ZONE METHOD --- OTHER POS : " + pos.getxLat() + " " + pos.getyLon() );
 				System.out.println("COVID ZONE METHOD --- DIFF LAT : " + Math.abs(pos.getxLat() - lat) );
 				System.out.println("COVID ZONE METHOD --- DIFF LON : " + Math.abs(pos.getyLon() - lon) );
-				if(!pos.getUserID().equals(mail) &&Math.abs(pos.getxLat() - lat) <=5.0 && Math.abs(pos.getyLon() - lon) <=5.0){
+				if(!pos.getUserID().equals(mail) && Math.abs(pos.getxLat() - lat) <=5.0 && Math.abs(pos.getyLon() - lon) <=5.0){
 					System.out.println("COVID ZONE METHOD --- TROPPO VICINI!");
 					return true;
 				}

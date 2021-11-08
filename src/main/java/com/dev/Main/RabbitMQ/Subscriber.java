@@ -1,13 +1,11 @@
 package com.dev.Main.RabbitMQ;
 
 
-import com.dev.Main.Model.Distanziamento;
 import com.dev.Main.Model.MyMessage;
 import com.dev.Main.Service.DistanziamentoService;
 import com.dev.Main.util.DistanziamentoManager;
 import com.rabbitmq.client.Channel;
 import org.json.simple.parser.ParseException;
-import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +13,6 @@ import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.Random;
 
 @Component
 public class Subscriber {
@@ -24,9 +21,6 @@ public class Subscriber {
     @Autowired DistanziamentoService serv;
 	
 	@Autowired DistanziamentoManager manager;
-	
-    @Autowired
-    private AmqpTemplate amqpTemplate;
 
     @RabbitListener(queues = {"distanziamento"})
     public void receive(MyMessage message, Channel channel, @Header(AmqpHeaders.DELIVERY_TAG) long tag) throws IOException, ParseException {

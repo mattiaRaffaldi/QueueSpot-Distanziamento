@@ -1,4 +1,9 @@
-package com.dev.Main;
+
+
+package com.dev.Main.util;
+
+/* DISMESSO, USATO SOLO IN FASE DI TESTING
+
 
 import com.dev.Main.Model.Distanziamento;
 import com.dev.Main.Model.MyMessage;
@@ -31,6 +36,7 @@ public class ApiLayer {
         this.adder = adder;
         this.pub = t;
     }
+
     @GetMapping(path="/all")
     public List<Distanziamento> getPosizioniAll(){
 
@@ -68,3 +74,6 @@ public class ApiLayer {
         return "200";
     }
 }
+
+*/
+
