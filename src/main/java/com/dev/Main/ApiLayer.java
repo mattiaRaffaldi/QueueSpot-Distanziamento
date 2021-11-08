@@ -1,3 +1,4 @@
+/* DISMESSO, USATO SOLO IN FASE DI TESTING
 package com.dev.Main;
 
 import com.dev.Main.Model.Distanziamento;
@@ -69,3 +70,4 @@ public class ApiLayer {
         return "200";
     }
 }
+*/

@@ -12,9 +12,6 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitConfig {
 
     public static final String LISTEN_QUEUE = "distanziamento";
-    public static final String PUBLISH_QUEUE1 = "contatore.Distanziamento";
-    public static final String PUBLISH_QUEUE2 = "contatore.QR";
-    public static final String PUBLISH_QUEUE3 = "contatore.Notifiche";
     public static final String EXCHANGE = "pissir-topics";
 
     public static String getEXCHANGE() {
@@ -32,13 +29,8 @@ public class RabbitConfig {
     TopicExchange topicExchange() {
         return new TopicExchange(EXCHANGE);
     }
-
-
-    //in ascolto su distanziamento .qr/.contatore/.notifiche
     @Bean
     Binding contatoreBinding(Queue contatoreQueue, TopicExchange topicExchange) {
-        //return BindingBuilder.bind(contatoreQueue).to(topicExchange);
-
         return BindingBuilder.bind(contatoreQueue)
                 .to(topicExchange)
                 .with("distanziamento.*");
