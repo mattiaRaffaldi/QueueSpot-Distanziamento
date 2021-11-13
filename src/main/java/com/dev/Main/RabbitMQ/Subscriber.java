@@ -40,6 +40,9 @@ public class Subscriber {
                 break;
             case "2":
                 //contatore
+                if(message.getAzione().equals("eixt")){
+                    manager.deleteDistanziamento(message.getEmail());
+                }
 
                 break;
             case "3":

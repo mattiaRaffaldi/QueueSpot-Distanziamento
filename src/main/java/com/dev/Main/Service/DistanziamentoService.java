@@ -36,4 +36,10 @@ public class DistanziamentoService {
         dist.save(d);
     }
 
+    public  void deleteUser(String email) {
+        Distanziamento res = dist.getByUser(email);
+
+        dist.delete(res);
+
+    }
 }

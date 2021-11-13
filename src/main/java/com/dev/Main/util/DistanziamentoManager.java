@@ -69,4 +69,8 @@ public class DistanziamentoManager {
 		}
 
 
+	public void deleteDistanziamento(String email) {
+
+		serv.deleteUser(email);
+	}
 }
